@@ -45,7 +45,7 @@ title}</h1>
 
          </div>
          <div>
-             <button onclick="button('${card.title}   ${card.view_count}')"><img src="images/Group 40106.jpeg" alt="">
+             <button onclick="button('${card.title}  ${card.view_count}')"><img src="images/Group 40106.jpeg" alt="">
              </button>
          </div>
 
