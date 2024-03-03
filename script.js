@@ -9,20 +9,31 @@ const allCard = async(id) =>{
          cardDiv.innerHTML=''
 
     data.posts.forEach(card =>{
-      
-
-      document.getElementById('spinner').style.display='none'
-
+let active = ''
+if(card.isActive){
+  active = `<div class="absolute h-6 w-6 bg-green-500 rounded-full ml-20"></div>`
+}else{
+  active = `<div class="absolute h-6 w-6 bg-red-500 rounded-full ml-20"></div>`
+}
+      setTimeout(() => {
+         document.getElementById('spinner').style.display='none'
+      }, 2000);
        const div = document.createElement('div')
       div.style.display='flex'
        div.innerHTML=`
        <div  class="flex flex-1 flex-col lg:flex-row  bg-[#797DFC1A] gap-5 p-7 rounded-md">
     <div>
-    <div class=" avatar online">
-    <div class="w-24 rounded-full">
-      <img src=" ${card.image}" />
+    <div class="avatar relative">
+      <div class="w-24 rounded-xl ">
+        <img src="${card.image}" />
+
+      </div>
+      
+    ${active}
+
     </div>
- </div>
+
+
  </div>
  <div class="space-y-6">
      <div class="flex gap-14">
@@ -53,7 +64,7 @@ title}</h1>
 
          </div>
          <div>
-             <button onclick="button('${card.title}... / views: ${card.view_count}')"><img src="images/Group 40106.jpeg" alt="">
+             <button onclick="button(' ${card.title}  -- views: ${card.view_count}')"><img src="images/email 1.png" alt="">
              </button>
          </div>
 
@@ -78,7 +89,6 @@ const handleSearch = () =>{
 }else{
    alert("write what do you need!!")
 }
-document.getElementById('input').value =''
   
 }
 
