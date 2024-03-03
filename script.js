@@ -1,4 +1,5 @@
 const cardDiv = document.getElementById('card-div')
+const cardDiv2 = document.getElementById('card-div-two')
 
 
 const allCard = async() =>{
@@ -65,24 +66,51 @@ cardDiv.appendChild(div)
 
 let count = 1
 function button(e){
-   
-
    const number = document.getElementById('count').innerText=count
    count++
-    
    const name = document.getElementById('name')
-
 const p = document.createElement('p')
-
 // p.innerText = title.textContent
 p.innerText = e
-
-
-
 name.appendChild(p)
-
-
 }
 
 
+// card section 2'
+const cardTwo = async() =>{
+   const res = await fetch(' https://openapi.programming-hero.com/api/retro-forum/latest-posts')
+   const data = await res.json()
+   data.forEach(card =>{
+   const div = document.createElement('div')
+   div.innerHTML=`
+   <div class="card bg-base-100 shadow-xl px-4">
+    <figure><img class="rounded-2xl" src="${card.cover_image}" alt="Shoes" /></figure>
+    <div class="py-2 space-y-3">
+      <p>${card.author.posted_date}</p>
+      <h2 class="card-title font-extrabold">${card.title}</h2>
+      <p>${card.description}</p>
+      <div class="flex gap-10">
+        <div class="avatar">
+          <div class="w-16 rounded-full">
+            <img src="${card.profile_image}" />
+          </div>
+
+        </div>
+
+       <div>
+        <h2 class="font-extrabold">${card.author.name}</h2>
+        <p>${card.author.designation}</p>
+      </div>
+      </div>
+    </div>
+  </div>
+   `
+   cardDiv2.appendChild(div)
+
+
+
+   })
+}
+
+cardTwo()
 allCard()
