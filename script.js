@@ -9,6 +9,7 @@ const allCard = async(id) =>{
          cardDiv.innerHTML=''
 
     data.posts.forEach(card =>{
+      
 
       document.getElementById('spinner').style.display='none'
 
@@ -70,6 +71,17 @@ cardDiv.appendChild(div)
     })
 }
 
+const handleSearch = () =>{
+  const input =  document.getElementById('input').value
+  if(input){
+    allCard(input)
+}else{
+   alert("write what do you need!!")
+}
+document.getElementById('input').value =''
+  
+}
+
 let count = 1
 function button(e){
    const number = document.getElementById('count').innerText = count
@@ -89,16 +101,35 @@ name.appendChild(p)
 
 
 // card section 2
+
 const cardTwo = async() =>{
    const res = await fetch(' https://openapi.programming-hero.com/api/retro-forum/latest-posts')
    const data = await res.json()
+  
    data.forEach(card2 =>{
+   let a = ''
+    if(!card2.author.designation){
+      a = 'Unknown'
+       
+    }else{
+      a = card2.author.designation
+    }
+    let b = ''
+    if(!card2.author.posted_date){
+      b = 'No Publish Data'
+    }else{
+      b = card2.author.posted_date
+    }
    const div = document.createElement('div')
    div.innerHTML=`
    <div class="card bg-base-100 shadow-xl px-4">
     <figure><img class="rounded-2xl" src="${card2.cover_image}" alt="Shoes" /></figure>
     <div class="py-2 space-y-3">
-      <p>${card2.author.posted_date}</p>
+      <div class="flex">
+      <img src="images/Frame.png" alt="">
+      <p>${b}</p>
+      
+      </div>
       <h2 class="card-title font-extrabold">${card2.title}</h2>
       <p>${card2.description}</p>
       <div class="flex gap-10">
@@ -111,7 +142,7 @@ const cardTwo = async() =>{
 
        <div>
         <h2 class="font-extrabold">${card2.author.name}</h2>
-        <p>${card2.author.designation}</p>
+        <p>${a}</p>
       </div>
       </div>
     </div>
@@ -125,16 +156,7 @@ const cardTwo = async() =>{
 }
 
 
-const handleSearch = () =>{
-  const input =  document.getElementById('input').value
-  if(input){
-    allCard(input)
-}else{
-   alert("write what do you need!!")
-}
-document.getElementById('input').value =''
-  
-}
+
 
 cardTwo()
 allCard('comedy')
