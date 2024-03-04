@@ -64,7 +64,7 @@ title}</h1>
 
          </div>
          <div>
-             <button onclick="button(' ${card.title}  -- views: ${card.view_count}')"><img src="images/email 1.png" alt="">
+             <button onclick="button(' ${card.title} -- views: ${card.view_count}')"><img src="images/email 1.png" alt="">
              </button>
          </div>
 
@@ -97,15 +97,22 @@ function button(e){
    const number = document.getElementById('count').innerText = count
    count++
    const name = document.getElementById('name')
+   
 const p = document.createElement('p')
+p.style.display='flex'
+const p2 = document.createElement('p')
 p.style.padding='10px'
 p.style.paddingTop='20px'
 p.style.paddingBottom='20px'
-p.style.fontSize='25px'
+p.style.fontSize='20px'
 p.style.fontWeight='bold'
-p.style.boxShadow='2px 2px 2px 2px black'
+p.style.boxShadow='1px 1px 1px 1px black'
+p.style.borderRadius='20px'
 p.innerText = e
+p2.innerHTML=  `  <img id="img" src="images/Group 16.png" alt="">`
+p.appendChild(p2)
 name.appendChild(p)
+// name.appendChild(p2)
 }
 
 
